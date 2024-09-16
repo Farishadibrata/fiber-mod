@@ -1,0 +1,41 @@
+package view
+
+import layout "farishadibrata.com/fiber-modular/internal/style/layout"
+
+templ Sidebar() {
+	<aside class="w-64 bg-white shadow-md" hx-boost="true">
+		<div class="p-4">
+			<h1 class="text-xl font-bold">Component</h1>
+		</div>
+		<nav class="mt-4">
+			<ul hx-target="#content">
+				for key, link := range ctx.Value("sidebar_content").(map[string]interface{}) {
+					<li><a hx-get={ string(templ.URL(ctx.Value("CURRENT_PATH").(string) + link.(string))) } class="block py-2 px-4 hover:bg-gray-100"> { key }</a></li>
+				}
+			</ul>
+		</nav>
+	</aside>
+}
+
+templ ContentA() {
+	Content A
+}
+
+templ ContentB() {
+	Content B
+}
+
+templ Playground(contents templ.Component) {
+	@layout.Layout() {
+		<div class="bg-slate-800">
+			<div class="flex min-h-screen">
+				<!-- Sidebar -->
+				@Sidebar()
+				<!-- Main Content -->
+				<div class="flex-1 p-8" id="content">
+					@contents
+				</div>
+			</div>
+		</div>
+	}
+}

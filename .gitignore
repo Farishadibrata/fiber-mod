@@ -1,0 +1,6 @@
+.env
+cmd/.env
+node_modules
+*.exe
+tmp
+*_templ.go
