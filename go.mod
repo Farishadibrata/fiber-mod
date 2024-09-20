@@ -14,6 +14,7 @@ require (
 )
 
 require (
+	github.com/Oudwins/tailwind-merge-go v0.2.0
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
