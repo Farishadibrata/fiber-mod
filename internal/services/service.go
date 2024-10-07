@@ -7,7 +7,6 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/joho/godotenv"
 	"go.uber.org/zap"
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -31,11 +30,11 @@ func NewService() *Service {
 
 	defer logger.Sync() // flushes buffer, if any
 
-	dsn := os.Getenv("DB_DSN")
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		logger.Panic("Failed to open database : ", zap.Error(err))
-	}
+	// dsn := os.Getenv("DB_DSN")
+	// db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	// if err != nil {
+	// 	logger.Panic("Failed to open database : ", zap.Error(err))
+	// }
 
 	redisDB, _ := strconv.Atoi(os.Getenv("REDIS_DB"))
 	cache := redis.NewClient(&redis.Options{
@@ -44,5 +43,5 @@ func NewService() *Service {
 		DB:       redisDB,
 	})
 
-	return &Service{db, cache, logger}
+	return &Service{nil, cache, logger}
 }

@@ -1,6 +1,8 @@
 package app
 
 import (
+	"context"
+
 	"farishadibrata.com/fiber-modular/internal/services"
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
@@ -30,13 +32,22 @@ func (r *Renderer) SetPage(page templ.Component) *Renderer {
 }
 
 // Use this for multiple rendering with /* path
-func (r *Renderer) ConditionalPage(path string, pages map[string]templ.Component) *Renderer {
+func (r *Renderer) ConditionalPage(path string, pages map[string]templ.Component, notFoundHandler templ.Component) *Renderer {
 	r.ConditionalPagePath = path
 	r.Fiber.Locals("CURRENT_PATH", path)
 	currentPath := r.Fiber.Params("page")
+	if pages[currentPath] == nil {
+		r.Page = notFoundHandler
+		return r
+	}
 	r.Page = pages[currentPath]
 
 	return r
+}
+
+// And use this to render another link that is not the current page.
+func URLDynamic(ctx context.Context, link string) string {
+	return string(templ.URL(ctx.Value("CURRENT_PATH").(string) + "/" + link))
 }
 
 func (r *Renderer) SetLocals(vars map[string]interface{}) *Renderer {
