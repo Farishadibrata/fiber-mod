@@ -46,8 +46,8 @@ func (r *Renderer) ConditionalPage(path string, pages map[string]templ.Component
 }
 
 // And use this to render another link that is not the current page.
-func URLDynamic(ctx context.Context, link string) string {
-	return string(templ.URL(ctx.Value("CURRENT_PATH").(string) + "/" + link))
+func URLDynamic(ctx context.Context, link string) templ.SafeURL {
+	return templ.URL(ctx.Value("CURRENT_PATH").(string) + "/" + link)
 }
 
 func (r *Renderer) SetLocals(vars map[string]interface{}) *Renderer {

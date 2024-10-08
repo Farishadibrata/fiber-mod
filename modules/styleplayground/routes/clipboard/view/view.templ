@@ -1,0 +1,33 @@
+package view
+
+import (
+	"bytes"
+	"context"
+)
+
+templ Clipboard() {
+	<div className="absolute">
+		<div class="relative">
+			<pre>
+				<code id="code-block" class=" mx-auto mt-24 bg-gray-900 rounded-lg overflow-scroll">
+					{ children... }
+				</code>
+			</pre>
+			<div class="absolute top-2 end-2 bg-gray-50 dark:bg-gray-700">
+				<button data-copy-to-clipboard-target="code-block" data-copy-to-clipboard-content-type="innerHTML" data-copy-to-clipboard-html-entities="true" class="text-gray-900 dark:text-gray-400 m-0.5 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 rounded-lg py-2 px-2.5 inline-flex items-center justify-center bg-white border-gray-200 border">
+					<span id="default-message" class="inline-flex items-center">
+						<i data-lucide="clipboard"></i>
+						<span class="text-xs font-semibold">Copy code</span>
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+}
+
+// The problem with this is code is uglyfied
+func UseClipboard(component func() templ.Component) string {
+	buf := new(bytes.Buffer)
+	component().Render(context.Background(), buf)
+	return buf.String()
+}

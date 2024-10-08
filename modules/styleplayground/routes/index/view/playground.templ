@@ -11,10 +11,10 @@ templ Sidebar() {
 		<div class="p-4">
 			<h1 class="text-xl font-bold">Component Playgrounds</h1>
 		</div>
-		<nav class="mt-4">
-			<ul hx-target="#content">
+		<nav class="mt-4" hx-boost="true">
+			<ul hx-boost="true" hx-target="#content">
 				for _, link := range ctx.Value("sidebar_content").([]models.Sidebar) {
-					<li><a hx-get={ app.URLDynamic(ctx, link.Path) } class="block py-2 px-4 hover:bg-gray-100">{ link.Title }</a></li>
+					<a href={ app.URLDynamic(ctx, link.Path) } class="block py-2 px-4 hover:bg-gray-100 cursor-pointer text-red"><li>{ link.Title }</li></a>
 				}
 			</ul>
 		</nav>
@@ -22,6 +22,7 @@ templ Sidebar() {
 }
 
 templ ContentA() {
+	
 	Content A
 }
 
@@ -33,9 +34,6 @@ templ Button() {
 	Button
 }
 
-templ Alert() {
-	Alert
-}
 
 templ Playground(contents templ.Component) {
 	@layout.Layout() {

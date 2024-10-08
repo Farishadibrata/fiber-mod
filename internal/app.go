@@ -11,12 +11,12 @@ import (
 
 func NewApp() {
 	fiberApp := fiber.New()
-
 	service := services.NewService()
+	fiberApp.Static("/assets", "./assets")
+	fiberApp.Static("/x", ".")
+
 	AppInstance := &app.AppInstance{Fiber: fiberApp, Service: service}
 	module.ModuleLoader(AppInstance)
-
-	fiberApp.Static("/assets", "./assets")
 
 	log.Fatal(fiberApp.Listen(":3000"))
 }

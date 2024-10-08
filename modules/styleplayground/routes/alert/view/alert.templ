@@ -1,0 +1,32 @@
+package view
+
+import Clipboard "farishadibrata.com/fiber-modular/modules/styleplayground/routes/clipboard/view"
+
+templ AlertCollapsible() {
+	<div hx-boost="false" x-data="{ open: true }">
+		<div class="bg-green-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg" x-show="open" x-transition>
+			<i data-lucide="circle-alert"></i>
+			<span class="text-green-800">Your account has been saved.</span>
+			<span x-on:click="open = false">
+				<i data-lucide="x"></i>
+			</span>
+		</div>
+	</div>
+}
+
+templ AlertPage() {
+	@AlertCollapsible()
+	@Clipboard.Clipboard() {
+		{ `
+	<div hx-boost="false" x-data="{ open: true }">
+		<div class="bg-green-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg" x-show="open" x-transition>
+			<i data-lucide="circle-alert"></i>
+			<span class="text-green-800">Your account has been saved.</span>
+			<span x-on:click="open = false">
+				<i data-lucide="x"></i>
+			</span>
+		</div>
+	</div>
+		` }
+	}
+}
