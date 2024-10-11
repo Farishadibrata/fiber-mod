@@ -1,0 +1,25 @@
+package view
+
+templ Card() {
+	<div class="max-w-sm bg-slate-100 border border-gray-200 rounded-lg shadow ">
+		<a href="#">
+			<img class="rounded-t-lg" src="https://images.unsplash.com/photo-1719937050679-c3a2c9c67b0f?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo by Samsung Memory on Unsplash"/>
+		</a>
+		<div class="p-5">
+			<a href="#">
+				<h5 class="mb-2 text-2xl font-bold tracking-tight ">This is Card Header</h5>
+			</a>
+			<p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+			<a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg border-2 w-full text-center">
+				Action 
+				<i data-lucide="move-up-right"></i>
+			</a>
+		</div>
+	</div>
+}
+
+templ CardPage() {
+	<div class="flex gap-2">
+		@Card()
+	</div>
+}

@@ -1,6 +1,6 @@
 package view
 
-import Clipboard "farishadibrata.com/fiber-modular/modules/styleplayground/routes/clipboard/view"
+import . "farishadibrata.com/fiber-modular/modules/styleplayground/routes/clipboard/view"
 
 templ AlertCollapsible() {
 	<div hx-boost="false" x-data="{ open: true }">
@@ -16,7 +16,7 @@ templ AlertCollapsible() {
 
 templ AlertPage() {
 	@AlertCollapsible()
-	@Clipboard.Clipboard() {
+	@Clipboard() {
 		{ `
 	<div hx-boost="false" x-data="{ open: true }">
 		<div class="bg-green-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg" x-show="open" x-transition>

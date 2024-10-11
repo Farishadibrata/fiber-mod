@@ -12,7 +12,7 @@ templ Layout() {
 			<meta name="htmx-config" content='{"historyCacheSize": 0, "refreshOnHistoryMiss": true}'/>
 			<meta name="Cache-Control" content="no-cache"/>
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"/>
-			<link rel="stylesheet" href="/assets/tokyo-night-dark.css"/>
+			<link rel="stylesheet" href="https://raw.githubusercontent.com/highlightjs/highlight.js/refs/heads/main/src/styles/github-dark-dimmed.css"/>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 			<!-- and it's easy to individually load additional languages -->
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
@@ -22,8 +22,12 @@ templ Layout() {
 		</body>
 		<script src="https://unpkg.com/lucide@latest"></script>
 		<script>
+			hljs.highlightAll();
+			lucide.createIcons()
+			document.body.addEventListener('reInitialize', (e) => {
     			lucide.createIcons()
+				hljs.highlightAll()
+			})
   		</script>
-		<script>hljs.highlightAll();</script>
 	</html>
 }

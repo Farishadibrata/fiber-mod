@@ -75,6 +75,7 @@ func (r *Renderer) Render() error {
 	}
 
 	if partialRender {
+		r.Fiber.Set("HX-Trigger-After-Swap", "reInitialize")
 		return r.Page.Render(r.Fiber.Context(), r.Fiber.Response().BodyWriter())
 	}
 

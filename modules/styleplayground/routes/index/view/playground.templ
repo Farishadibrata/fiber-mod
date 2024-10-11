@@ -1,8 +1,8 @@
 package view
 
 import (
-	app "farishadibrata.com/fiber-modular/internal/app"
-	layout "farishadibrata.com/fiber-modular/internal/style/layout"
+	. "farishadibrata.com/fiber-modular/internal/app"
+	. "farishadibrata.com/fiber-modular/internal/style/layout"
 	"farishadibrata.com/fiber-modular/modules/styleplayground/models"
 )
 
@@ -14,7 +14,7 @@ templ Sidebar() {
 		<nav class="mt-4" hx-boost="true">
 			<ul hx-boost="true" hx-target="#content">
 				for _, link := range ctx.Value("sidebar_content").([]models.Sidebar) {
-					<a href={ app.URLDynamic(ctx, link.Path) } class="block py-2 px-4 hover:bg-gray-100 cursor-pointer text-red"><li>{ link.Title }</li></a>
+					<a href={ URLDynamic(ctx, link.Path) } class="block py-2 px-4 hover:bg-gray-100 cursor-pointer text-red"><li>{ link.Title }</li></a>
 				}
 			</ul>
 		</nav>
@@ -30,19 +30,15 @@ templ Home() {
 	Welcome to Style Playground
 }
 
-templ Button() {
-	Button
-}
-
 
 templ Playground(contents templ.Component) {
-	@layout.Layout() {
-		<div class="bg-slate-800">
+	@Layout() {
+		<div class="bg-slate-100">
 			<div class="flex min-h-screen">
 				<!-- Sidebar -->
 				@Sidebar()
 				<!-- Main Content -->
-				<div class="flex-1 p-8" id="content">
+				<div class="flex-1 p-8" id="content" >
 					@contents
 				</div>
 			</div>
